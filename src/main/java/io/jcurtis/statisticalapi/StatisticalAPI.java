@@ -1,25 +1,32 @@
 package io.jcurtis.statisticalapi;
 
-import io.jcurtis.statisticalapi.statistic.StatisticsManager;
+import io.jcurtis.statisticalapi.provider.StatsProvider;
+import io.jcurtis.statisticalapi.statistic.StatsManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class StatisticalAPI extends JavaPlugin {
-    private static StatisticalAPI instance;
-    private StatisticsManager statsManager;
+import java.util.ArrayList;
 
-    @Override
-    public void onEnable() {
-        instance = this;
-        statsManager = new StatisticsManager();
-        getLogger().info("StatisticalAPI has been enabled!");
-    }
+public final class StatisticalAPI extends JavaPlugin {
+    private ArrayList<StatsProvider> providers = new ArrayList<>();
+
+    private static StatisticalAPI instance;
+    private static StatsManager statsManager;
 
     public static StatisticalAPI getInstance() {
         return instance;
     }
 
-    public StatisticsManager getStatsManager() {
+    public StatsManager getStatsManager() {
         return statsManager;
+    }
+
+    public void registerStatsProvider(StatsProvider provider) {
+        providers.add(provider);
+    }
+
+    @Override
+    public void onEnable() {
+        getLogger().info("StatisticalAPI has been enabled!");
     }
 
     @Override
