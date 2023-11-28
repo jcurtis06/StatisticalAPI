@@ -7,6 +7,8 @@
 
 package io.jcurtis.statisticalapi.statistic;
 
+import org.bukkit.entity.Player;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -27,6 +29,11 @@ public class StatisticsManager {
         }
 
         saveStatistics(playerUUID, stats);
+    }
+
+    public void registerPlayerStatistic(PlayerStatistic statistic) {
+        Map<String, PlayerStatistic> stats = playerStatistics.computeIfAbsent(statistic.getPlayerUUID(), k -> new HashMap<>());
+        stats.put(statistic.getName(), statistic);
     }
 
     public void incrementPlayerStatistic(UUID playerUUID, String statName, Object increment) {
