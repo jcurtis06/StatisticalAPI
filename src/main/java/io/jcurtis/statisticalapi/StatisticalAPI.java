@@ -26,6 +26,9 @@ public final class StatisticalAPI extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        instance = this;
+        statsManager = new StatsManager();
+
         getLogger().info("StatisticalAPI has been enabled!");
     }
 

@@ -31,12 +31,15 @@ public class StatsManager {
         }
     }
 
-    public Statistic getStatistic(Statistic statistic, StatsProvider provider) {
+    public Statistic getPlayerStatistic(String id, StatsProvider provider, String playerUUID) {
         List<Statistic> providerStats = stats.get(provider);
         if (providerStats != null) {
             for (Statistic stat : providerStats) {
-                if (stat.equals(statistic)) {
-                    return stat;
+                if (stat.getId().equals(id) && stat instanceof PlayerStatistic) {
+                    PlayerStatistic playerStat = (PlayerStatistic) stat;
+                    if (playerStat.getPlayerUUID().toString().equals(playerUUID)) {
+                        return stat;
+                    }
                 }
             }
         }
