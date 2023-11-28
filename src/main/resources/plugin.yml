@@ -1,0 +1,4 @@
+name: StatisticalAPI
+version: '${version}'
+main: io.jcurtis.statisticalapi.StatisticalAPI
+api-version: '1.20'
