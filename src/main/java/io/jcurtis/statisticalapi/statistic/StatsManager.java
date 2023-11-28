@@ -9,10 +9,7 @@ package io.jcurtis.statisticalapi.statistic;
 
 import io.jcurtis.statisticalapi.provider.StatsProvider;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class StatsManager {
     private Map<StatsProvider, List<Statistic>> stats;
@@ -31,13 +28,12 @@ public class StatsManager {
         }
     }
 
-    public Statistic getPlayerStatistic(String id, StatsProvider provider, String playerUUID) {
+    public Statistic getPlayerStatistic(String id, StatsProvider provider, UUID playerUUID) {
         List<Statistic> providerStats = stats.get(provider);
         if (providerStats != null) {
             for (Statistic stat : providerStats) {
-                if (stat.getId().equals(id) && stat instanceof PlayerStatistic) {
-                    PlayerStatistic playerStat = (PlayerStatistic) stat;
-                    if (playerStat.getPlayerUUID().toString().equals(playerUUID)) {
+                if (stat.getId().equals(id) && stat instanceof PlayerStatistic playerStat) {
+                    if (playerStat.getPlayerUUID().equals(playerUUID)) {
                         return stat;
                     }
                 }

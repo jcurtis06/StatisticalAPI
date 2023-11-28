@@ -14,6 +14,7 @@ public class PlayerStatistic extends Statistic {
 
     public PlayerStatistic(String name, String id, int value, boolean requirePermission, UUID playerUUID) {
         super(name, id, value, requirePermission);
+        this.playerUUID = playerUUID;
     }
 
     public PlayerStatistic(String name, String id, int value, UUID playerUUID) {
