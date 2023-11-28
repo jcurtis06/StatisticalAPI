@@ -46,3 +46,16 @@ processResources {
         expand props
     }
 }
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            // Here, you can also add additional configuration like artifactId, groupId, version, etc., if necessary.
+        }
+    }
+    repositories {
+        mavenLocal()  // Publishes to your local Maven repository.
+        // If you want to publish to a remote repository, you need to configure it here.
+    }
+}
