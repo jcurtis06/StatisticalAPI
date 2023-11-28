@@ -46,6 +46,15 @@ public class StatisticsManager {
         });
     }
 
+    public PlayerStatistic getPlayerStatistic(UUID playerUUID, String statName) {
+        Map<String, PlayerStatistic> stats = playerStatistics.computeIfAbsent(playerUUID, k -> new HashMap<>());
+        return stats.get(statName);
+    }
+
+    public Map<String, PlayerStatistic> getPlayerStatistics(UUID playerUUID) {
+        return playerStatistics.computeIfAbsent(playerUUID, k -> new HashMap<>());
+    }
+
     public void saveStatistics(UUID playerUUID, Map<String, PlayerStatistic> stats) {
 
     }
